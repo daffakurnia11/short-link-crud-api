@@ -7,6 +7,11 @@ import React, { useEffect, useState } from "react";
 
 type Props = { params: { custom: string } };
 
+/**
+ * Redirecter Component is a component to redirect the short link to original link
+ * @param param.custom Parsing the url parameters to get the short link
+ * @returns Redirecter Component
+ */
 export default function Redirecter({ params }: Props): React.JSX.Element {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
