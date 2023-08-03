@@ -12,4 +12,4 @@ export const listUrl: string = `/short-link/`
  * Detail of Short Link API endpoint
  * @param custom Parsing the unique data
  */
-export const detailUrl: Function = (custom: string) => `/short-link/${custom}`
+export const detailUrl: Function = (custom: string) => `/short-link/${custom}/`

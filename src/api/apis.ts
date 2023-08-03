@@ -51,6 +51,22 @@ export async function CreateApi(data: RequestBodyType) {
     });
 }
 
+
+/**
+ * Short Link Update API Function
+ * @returns API Response Object
+ */
+export async function UpdateApi(custom: string, data: RequestBodyType) {
+  return await axios
+    .patch(url.detailUrl(custom), data)
+    .then((response: ApiResponse) => {
+      return response;
+    })
+    .catch((error: any) => {
+      return error.response;
+    });
+}
+
 /**
  * Short Link Delete API Function
  * @param data Parsing foreign key data
