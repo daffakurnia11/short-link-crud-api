@@ -2,6 +2,7 @@
 
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "@/styles/app.scss";
 import { Layout, Space } from "antd";
 import { Container } from "react-bootstrap";
 import Navbar from "@/component/Navbar";
