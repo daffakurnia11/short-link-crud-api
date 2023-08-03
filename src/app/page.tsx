@@ -81,6 +81,11 @@ export default function Home(): React.JSX.Element {
       title: "Custom Short Link",
       dataIndex: "custom",
       key: "custom",
+      render: (data) => (
+        <Link href={`/${data}`} target="_black">
+          https://link.dafkur.com/{data}
+        </Link>
+      ),
     },
     {
       title: "Action",

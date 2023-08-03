@@ -21,6 +21,21 @@ export async function ListApi() {
 }
 
 /**
+ * Short Link Retrieve API Function
+ * @returns API Response Object
+ */
+export async function RetrieveApi(custom: string) {
+  return await axios
+    .get(url.detailUrl(custom))
+    .then((response: ApiResponse) => {
+      return response;
+    })
+    .catch((error: any) => {
+      return error.response;
+    });
+}
+
+/**
  * Short Link Create API Function
  * @param data Parsing request body from create form
  * @returns API Response Object
