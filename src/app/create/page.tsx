@@ -1,14 +1,30 @@
 "use client";
 
+import { useState } from "react";
+import { CreateApi } from "@/api/apis";
+import { RequestBodyType } from "@/types/request";
 import { Button, Card, Form, Input, Typography } from "antd";
+import { useRouter } from "next/navigation";
 
 /**
- * Home component is a content of homepage
- * @returns Home Component
+ * Create component is a form creation for creating new short link
+ * @returns Create Component
  */
 export default function Create(): React.JSX.Element {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const onFinish = (values: RequestBodyType) => {
+    setLoading(true);
+    CreateApi(values).then((resp: any) => {
+      if (resp.status === 201) {
+        console.log(resp);
+        router.push("/");
+      } else {
+        console.log(resp);
+      }
+      setLoading(false);
+    });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -17,7 +33,7 @@ export default function Create(): React.JSX.Element {
 
   return (
     <>
-      <Card>
+      <Card style={{ maxWidth: 700 }} className="mx-auto">
         <Typography.Title level={4}>Create Link</Typography.Title>
         <Typography.Paragraph>
           Fill the form to create your own short link.
@@ -39,7 +55,7 @@ export default function Create(): React.JSX.Element {
               { required: true, message: "Please input the short link name!" },
             ]}
           >
-            <Input placeholder="Link Example" />
+            <Input disabled={loading} placeholder="Link Example" />
           </Form.Item>
           <Form.Item
             label="Original Link"
@@ -49,7 +65,7 @@ export default function Create(): React.JSX.Element {
               { type: "url", message: "Please input the valid link!" },
             ]}
           >
-            <Input placeholder="http://example.com/" />
+            <Input disabled={loading} placeholder="http://example.com/" />
           </Form.Item>
           <Form.Item
             label="Shorten Link"
@@ -59,13 +75,14 @@ export default function Create(): React.JSX.Element {
             ]}
           >
             <Input
+              disabled={loading}
               addonBefore="http://link.dafkur.com/"
               placeholder="shorten"
             />
           </Form.Item>
 
           <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={loading}>
               Shorten now!
             </Button>
           </Form.Item>
