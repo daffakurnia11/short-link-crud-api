@@ -1,7 +1,7 @@
-export default function Home() {
-  return (
-    <main>
-      <h1>Hello World!</h1>
-    </main>
-  );
+/**
+ * Home component is a content of homepage
+ * @returns Home Component
+ */
+export default function Home(): React.JSX.Element {
+  return <main>Hello World</main>;
 }
