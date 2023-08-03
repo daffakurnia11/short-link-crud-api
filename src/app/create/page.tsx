@@ -39,7 +39,11 @@ export default function Create(): React.JSX.Element {
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    setNotification({
+      type: "error",
+      title: "Cannot create short link",
+      message: "There is an error while creating a short link.",
+    });
   };
 
   return (
