@@ -6,6 +6,7 @@ import "@/styles/app.scss";
 import { Layout, Space } from "antd";
 import { Container } from "react-bootstrap";
 import Navbar from "@/component/Navbar";
+import Notification from "@/component/Notification";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Space direction="vertical" style={{ width: "100%" }} size={[0, 48]}>
+          <Notification />
           <Layout>
             <Navbar />
             <Layout.Content
