@@ -35,3 +35,19 @@ export async function CreateApi(data: RequestBodyType) {
       return error.response;
     });
 }
+
+/**
+ * Short Link Delete API Function
+ * @param data Parsing foreign key data
+ * @returns API Response Object
+ */
+export async function DeleteApi(custom: string) {
+  return await axios
+    .delete(url.detailUrl(custom))
+    .then((response: ApiResponse) => {
+      return response;
+    })
+    .catch((error: any) => {
+      return error.response;
+    });
+}

@@ -4,5 +4,5 @@
 export type RequestBodyType = {
   name: string,
   origin: string,
-  custon: string
+  custom: string
 }
