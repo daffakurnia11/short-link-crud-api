@@ -5,6 +5,8 @@ import { CreateApi } from "@/api/apis";
 import { RequestBodyType } from "@/types/request";
 import { Button, Card, Form, Input, Typography } from "antd";
 import { useRouter } from "next/navigation";
+import { useSetAtom } from "jotai";
+import { globalNotif } from "@/utils/atom";
 
 /**
  * Create component is a form creation for creating new short link
@@ -13,15 +15,24 @@ import { useRouter } from "next/navigation";
 export default function Create(): React.JSX.Element {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
+  const setNotification = useSetAtom(globalNotif);
 
   const onFinish = (values: RequestBodyType) => {
     setLoading(true);
     CreateApi(values).then((resp: any) => {
       if (resp.status === 201) {
-        console.log(resp);
+        setNotification({
+          type: "success",
+          title: "Short link created",
+          message: "Thank you for creating a new short link",
+        });
         router.push("/");
       } else {
-        console.log(resp);
+        setNotification({
+          type: "error",
+          title: "Cannot create short link",
+          message: "There is an error while creating a short link.",
+        });
       }
       setLoading(false);
     });
