@@ -57,9 +57,6 @@ export default function Home(): React.JSX.Element {
   const edit = (record: ShortLinkItem) => {
     form.setFieldsValue({
       ...record,
-      name: "",
-      origin: "",
-      custom: "",
     });
     setEditingKey(record.custom);
   };
