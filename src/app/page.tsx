@@ -9,13 +9,14 @@ import { ApiResponse } from "@/types/response";
 import { useSetAtom } from "jotai";
 import { globalNotif } from "@/utils/atom";
 import { EditableCellProps, ShortLinkItem } from "@/types/table";
-import getURL from "@/utils/getBaseUrl";
+import { useUrl } from "nextjs-current-url";
 
 /**
  * Home component is a content of homepage
  * @returns Home Component
  */
 export default function Home(): React.JSX.Element {
+  const { href: currentUrl } = useUrl() ?? {};
   const [data, setData] = useState<Array<Object>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const setNotification = useSetAtom(globalNotif);
@@ -128,8 +129,7 @@ export default function Home(): React.JSX.Element {
       editable: true,
       render: (data: string) => (
         <Link href={`/${data}`} target="_black" className="p-0 m-0">
-          {getURL("/")}
-          {data}
+          {currentUrl}/{data}
         </Link>
       ),
     },
@@ -221,7 +221,11 @@ export default function Home(): React.JSX.Element {
     ...restProps
   }) => {
     const inputNode =
-      inputType === "custom" ? <Input addonBefore={getURL("/")} /> : <Input />;
+      inputType === "custom" ? (
+        <Input addonBefore={`${currentUrl}/`} />
+      ) : (
+        <Input />
+      );
     const rules: any =
       inputType === "origin"
         ? [
