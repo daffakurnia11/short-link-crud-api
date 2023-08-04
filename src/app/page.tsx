@@ -2,7 +2,6 @@
 
 import { DeleteApi, ListApi, UpdateApi } from "@/api/apis";
 import { Button, Card, Form, Input, Popconfirm, Table, Typography } from "antd";
-import { ColumnsType } from "antd/es/table";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -10,6 +9,7 @@ import { ApiResponse } from "@/types/response";
 import { useSetAtom } from "jotai";
 import { globalNotif } from "@/utils/atom";
 import { EditableCellProps, ShortLinkItem } from "@/types/table";
+import getURL from "@/utils/getBaseUrl";
 
 /**
  * Home component is a content of homepage
@@ -128,7 +128,8 @@ export default function Home(): React.JSX.Element {
       editable: true,
       render: (data: string) => (
         <Link href={`/${data}`} target="_black" className="p-0 m-0">
-          https://link.dafkur.com/{data}
+          {getURL("/")}
+          {data}
         </Link>
       ),
     },
@@ -220,11 +221,7 @@ export default function Home(): React.JSX.Element {
     ...restProps
   }) => {
     const inputNode =
-      inputType === "custom" ? (
-        <Input addonBefore={`https://link.dafkur.com/`} />
-      ) : (
-        <Input />
-      );
+      inputType === "custom" ? <Input addonBefore={getURL("/")} /> : <Input />;
     const rules: any =
       inputType === "origin"
         ? [

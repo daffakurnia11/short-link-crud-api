@@ -7,6 +7,7 @@ import { Button, Card, Form, Input, Typography } from "antd";
 import { useRouter } from "next/navigation";
 import { useSetAtom } from "jotai";
 import { globalNotif } from "@/utils/atom";
+import getURL from "@/utils/getBaseUrl";
 
 /**
  * Create component is a form creation for creating new short link
@@ -91,7 +92,7 @@ export default function Create(): React.JSX.Element {
           >
             <Input
               disabled={loading}
-              addonBefore="http://link.dafkur.com/"
+              addonBefore={getURL("/")}
               placeholder="shorten"
             />
           </Form.Item>
