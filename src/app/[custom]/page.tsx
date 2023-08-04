@@ -1,11 +1,25 @@
 "use client";
 
-import { RetrieveApi } from "@/api/apis";
+import { ListApi, RetrieveApi } from "@/api/apis";
 import { Spin, Typography } from "antd";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type Props = { params: { custom: string } };
+
+export async function generateStaticParams() {
+  try {
+    const shortlink = await ListApi().then((res) => res.data);
+    console.log(shortlink);
+
+    return shortlink.map((data: any) => ({
+      custom: data.custom,
+    }));
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 /**
  * Redirecter Component is a component to redirect the short link to original link
@@ -35,7 +49,17 @@ export default function Redirecter({ params }: Props): React.JSX.Element {
       </Typography.Title>
       <Spin size="large" />
       <Typography.Title level={5} className="mt-4">
-        {loading ? "Searching for the link.." : `Waiting for ${data.name} link`}
+        {loading ? (
+          "Searching for the link.."
+        ) : (
+          <>
+            <span>Waiting for {data.name} link</span>
+            <br />
+            <span>
+              Redirect to <Link href={data.origin}>{data.origin}</Link>
+            </span>
+          </>
+        )}
       </Typography.Title>
     </div>
   );
