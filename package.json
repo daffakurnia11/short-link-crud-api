@@ -19,6 +19,7 @@
     "eslint-config-next": "13.4.12",
     "jotai": "^2.2.3",
     "next": "13.4.12",
+    "nextjs-current-url": "^1.0.3",
     "react": "18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "18.2.0",
