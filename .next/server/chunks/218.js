@@ -9745,7 +9745,7 @@ _export(exports, {
         return HeadersAdapter;
     }
 });
-const _reflect = __webpack_require__(99591);
+const _reflect = __webpack_require__(90794);
 class ReadonlyHeadersError extends Error {
     constructor(){
         super("Headers cannot be modified. Read more: https://nextjs.org/docs/app/api-reference/functions/headers");
@@ -9917,7 +9917,7 @@ class HeadersAdapter extends Headers {
 
 /***/ }),
 
-/***/ 99591:
+/***/ 90794:
 /***/ ((__unused_webpack_module, exports) => {
 
 
@@ -9984,7 +9984,7 @@ _export(exports, {
     }
 });
 const _cookies = __webpack_require__(81220);
-const _reflect = __webpack_require__(99591);
+const _reflect = __webpack_require__(90794);
 class ReadonlyRequestCookiesError extends Error {
     constructor(){
         super("Cookies can only be modified in a Server Action or Route Handler. Read more: https://nextjs.org/docs/app/api-reference/functions/cookies#cookiessetname-value-options");

@@ -1,6 +1,6 @@
 {
-  "/page": "/",
   "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
   "/[custom]/page": "/[custom]",
   "/create/page": "/create"
 }
