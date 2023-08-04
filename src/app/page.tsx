@@ -129,7 +129,8 @@ export default function Home(): React.JSX.Element {
       editable: true,
       render: (data: string) => (
         <Link href={`/${data}`} target="_black" className="p-0 m-0">
-          {currentUrl}/{data}
+          {currentUrl}
+          {data}
         </Link>
       ),
     },
@@ -222,7 +223,7 @@ export default function Home(): React.JSX.Element {
   }) => {
     const inputNode =
       inputType === "custom" ? (
-        <Input addonBefore={`${currentUrl}/`} />
+        <Input addonBefore={`${currentUrl}`} />
       ) : (
         <Input />
       );

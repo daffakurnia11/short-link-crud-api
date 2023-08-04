@@ -93,7 +93,7 @@ export default function Create(): React.JSX.Element {
           >
             <Input
               disabled={loading}
-              addonBefore={`${currentUrl}/`}
+              addonBefore={`${currentUrl}`}
               placeholder="shorten"
             />
           </Form.Item>
